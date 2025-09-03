@@ -6,6 +6,7 @@ import PropertyGrid from './components/Tenants/PropertyGrid';
 import Pagination from './components/Tenants/Pagination';
 import Footer from './components/Footer';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 import ManagerRentSpace from './components/PropertyManager/RentSpace';
 import ManagerProfile from './components/PropertyManager/Profile';
 import AnalyticsReports from './components/PropertyManager/AnalyticsReports';
@@ -121,6 +122,21 @@ function App() {
             setCurrentPage('dashboard');
           }
         }}
+        onBackToMain={() => setCurrentPage('dashboard')}
+        onSignUpClick={() => setCurrentPage('signup')}
+      />
+    );
+  }
+
+  if (currentPage === 'signup') {
+    return (
+      <SignUp
+        onSignUpSuccess={({ role }) => {
+          // For now, just redirect to login after successful signup
+          // In a real app, you might want to auto-login the user
+          setCurrentPage('login');
+        }}
+        onBackToLogin={() => setCurrentPage('login')}
       />
     );
   }
